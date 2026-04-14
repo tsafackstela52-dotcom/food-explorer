@@ -1,147 +1,4 @@
-// Remplacons le var par le let car ces objets ne changent pas
-// const student1 = {
-//   name: "Marie",
-//   age: 22,
-//   city: "yaounde",
-//   skills: ["HTML", "CSS"],
-// };
-// const student2 = {
-//   name: "Paul",
-//   age: 25,
-//   city: "Douala",
-//   skills: ["Python", "SQL"],
-// };
-// // Remplacons chaque dclaration de fonction par des fonctions flechées
-// // avant
-// function getCity(student) {
-//   return student.city;
-// }
-// // Apres
-// const getCity = (student) => {
-//   return student.city;
-// };
-// // avant
-// function buildProfle(student, Extrakills) {
-//   var name = student.name;
-//   var age = student.age;
-//   var allskills = student.skills.concat(Extrakills);
-//   return name + "( " + age + " ) de " + getCity(student);
-// }
-// // apres
-// const buildProfle = (student, Extrakills) => {
-//   const name = student.name;
-//   const age = student.age;
-//   const allskills = student.skills.concat(Extrakills);
-//   return name + "( " + age + " ) de " + getCity(student);
-// };
-// // avant
-// function mergeStudents(S1,S2){
-//     return {name : S1.name + '&' + S2.name , city :'cameroun'};
-// }
-// apres
-// const mergeStudents = (S1, S2) => {
-//     return {name : S1.name + '&' + S2.name , city :'cameroun'};
-// }
-// // DESTRUCTURATION
-// // avant
 
-// const getCity = (student) => {
-//   return student.city;
-// };
-// // j'ai utilisé une fonction flechée pour simplifier la syntaxe
-// // apres
-// const getCity = ({city}) =>city;
-
-// // DESTRUCTURATION DANS buildProfile
-// // avant
-// const buildProfle = (student, Extrakills) => {
-//   const name = student.name;
-//   const age = student.age;
-//   const allskills = student.skills.concat(Extrakills);
-//  return name + '(' + age + ') de ' + getCity(student) + '| Comp : ' + allskills.join(',')
-// };
-// // apres
-// // destructuration pour recuperer l'age et name ;
-// // operateur spread pour fusioner les templates litterales pour construire la chaine
-// const {name , age  } = student;
-// // fusion des competences
-// // avec l'operateur (...spread)
-//  const allskills =[...student.skills,...Extrakills];
-// // LITTERAL DE GABARIT
-// // avant
-// const buildProfle = (student, Extrakills) => {
-//   const name = student.name;
-//   const age = student.age;
-//   const allskills = student.skills.concat(Extrakills);
-
-// };
-// // apres
-// return `$name ` ($age ) de ${getCity(student)} | Comp : $ {allskills.join (',') }`;
-
-// const fetchUserData = async () => {
-//     console.log(" Requête lancée...");
-
-//     try {
-//         const response = await fetch("https://jsonplaceholder.typicode.com/users/1");
-
-//         if (!response.ok) {
-
-//             throw new Error(`Utilisateur introuvable ! Statut : ${response.status}`);
-//         }
-
-//         const user = await response.json();
-
-//         console.log(`Bonjour Name : ${user.name} `);
-
-//     } catch (error) {
-
-//        console.log(
-//         "%c Erreur : " + error.message,
-//         "color: red; font-weight: bold; font-size: 14px;"
-//     );
-//         console.error("Error fetching user data :", error);
-//     }
-//     console.log('requete terminée');
-
-// };
-
-// fetchUserData();
-
-// const getFastData = async () => {
-//     console.log(" Requête lancée...");
-
-//     try {
-//         const response = await Promise.all ([
-//             fetch("https://jsonplaceholder.typicode.com/users/1"),
-//             fetch("https://jsonplaceholder.typicode.com/posts/1"),
-//         ]);
-
-//         if (!response.ok) {
-
-//             throw new Error(`Utilisateur introuvable ! Statut : ${response.status}`);
-//         }
-
-//            const user = await userResponse.json ();
-//            const post = await postResponse.json ();
-//         ;
-
-//         console.log(`Les deux requetes sont terminées  `);
-//         console.log(`Nom : ${user.name}`);
-//           console.log(`Titre : ${post.title}`);
-
-//     } catch (error) {
-
-//        console.log(
-//         "%c Erreur : " + error.message,
-//         "color: red; font-weight: bold; font-size: 14px;"
-//     );
-//         console.error("Error fetching user data :", error);
-//     }
-//     console.log('requete terminée');
-
-// };
-
-// GetFastData();
 const getFoods = async () => {
   try {
     const res = await fetch("https://jsonplaceholder.typicode.com/users");
@@ -174,3 +31,23 @@ const getFoods = async () => {
 };
 
 getFoods();
+/* RÉPONSES AUX QUESTIONS  :
+
+  1. Pourquoi utilise-t-on .map() avant .filter() ?
+     On utilise .map() d'abord pour "préparer" nos objets. L'API nous donne des 'users', 
+     mais nous avons besoin de 'plats' avec des prix et des catégories. 
+     Une fois que chaque objet possède sa propriété .category (créée dans le map), 
+     on peut enfin utiliser .filter() pour trier sur cette catégorie précise.
+
+  2. Quelle est la différence entre filter() et map() ?
+     - .map() : Sert à TRANSFORMER. Il crée un nouveau tableau de la MÊME TAILLE, 
+       mais modifie le contenu de chaque élément (ex: transformer un nom en majuscule).
+     - .filter() : Sert à SÉLECTIONNER. Il crée un nouveau tableau souvent PLUS PETIT, 
+       en ne gardant que les éléments qui respectent une condition (Vrai ou Faux).
+
+  3. Pourquoi transformer les données alimentaires avant affichage ?
+     - Pour l'Expérience Utilisateur: Un client veut voir un "NOM DE PLAT" et un "PRIX", 
+       pas les données techniques brutes d'une base de données d'utilisateurs.
+     - Pour la cohérence : Cela permet de nettoyer les données (ex: arrondir les prix 
+       ou mettre les textes en majuscules) pour que l'affichage soit uniforme et pro.
+*/
