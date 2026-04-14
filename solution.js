@@ -1,4 +1,4 @@
-
+// AUTHOR : TSAFACK SYLVIA STELA
 const getFoods = async () => {
   try {
     const res = await fetch("https://jsonplaceholder.typicode.com/users");
