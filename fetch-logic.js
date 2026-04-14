@@ -1,3 +1,4 @@
+// AUTHOR :TSAFACK SYLVIA STELA
 let name = 'john';
 function greet(){
     console.log("hello , " +  name);
